@@ -8,7 +8,7 @@ import axios from 'axios'
 import SuiVue from 'semantic-ui-vue'
 import 'semantic-ui-css/semantic.min.css'
 
-Vue.use(SuiVue);
+Vue.use(SuiVue)
 Vue.prototype.$http = axios.create({
   baseURL: 'http://localhost:3000'
 })
