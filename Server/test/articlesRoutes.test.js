@@ -141,7 +141,7 @@ describe('Article Routes result', function() {
       // console.log("---------->", res.body);
       res.status.should.equal(200)
       res.body.should.be.an('object')
-      res.body.message.should.equal("Tampil Satu Data Product")
+      res.body.message.should.equal("Tampil Data Article")
       res.body.data.should.have.property('_id')
       res.body.data.should.have.property('user')
       res.body.data.should.have.property('judul')

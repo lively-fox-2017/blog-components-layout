@@ -18,7 +18,7 @@ export default new Router({
       component: articles,
       children: [
         {
-          path: ':index',
+          path: ':id',
           component: showArticle,
           props: true
         }

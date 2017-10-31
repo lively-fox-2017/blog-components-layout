@@ -4,9 +4,17 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
+import swal from 'vue-sweetalert2'
+import VueJWT from 'vuejs-jwt'
 
 Vue.prototype.$axios = axios.create({
   baseURL: 'http://localhost:3000'
+})
+
+Vue.use(swal)
+Vue.use(VueJWT, {
+  signKey: 'hacktiv8',
+  keyName: 'token'
 })
 
 Vue.config.productionTip = false

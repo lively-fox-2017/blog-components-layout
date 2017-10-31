@@ -12,12 +12,18 @@ const schema = new mongoose.Schema({
     type: String,
     required: true
   },
+  imgUrl: String,
+  imgName: String,
   deskripsi: {
     type: String,
     required: true
   },
-  createdAt: Date,
-  updatedAt: Date
+  createdAt: {
+    type: Date
+  },
+  updatedAt: {
+    type: Date
+  }
 })
 
 const articleModel = mongoose.model('Article', schema)

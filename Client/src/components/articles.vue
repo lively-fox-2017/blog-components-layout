@@ -1,6 +1,6 @@
 <template>
   <div>
-    <recentArticle :allarticles="articles"></recentArticle>
+    <recentArticle :allarticles="articles" :isLogin="isLogin"></recentArticle>
     <router-view :allarticles="articles"></router-view>
     <!-- <showArticle></showArticle> -->
   </div>
@@ -10,6 +10,7 @@
 import recentArticle from '@/components/recent-article'
 import showArticle from '@/components/show-article'
 export default {
+  props: ['isLogin'],
   components: {
     recentArticle,
     showArticle

@@ -26,6 +26,8 @@ module.exports = {
       user: reqBody.user,
       judul: reqBody.judul,
       deskripsi: reqBody.deskripsi,
+      imgUrl: reqBody.imgUrl,
+      imgName: reqBody.imgName,
       createdAt: new Date(),
       updatedAt: null,
     }

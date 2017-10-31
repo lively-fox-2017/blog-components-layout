@@ -3,7 +3,7 @@ const helper = require('../helpers/helper')
 
 module.exports = {
   findAll: (req, res) => {
-    Article.find().populate('user').sort('judul').then((rowsArticle) => {
+    Article.find().populate('user').sort('createdAt').then((rowsArticle) => {
       // console.log("HHHHHHHHHHHHAAAAAAAAAAAAAAAAAAA");
       res.status(200).json({
         message: "Tampil Semua Article",
@@ -16,13 +16,13 @@ module.exports = {
     })
   },
 
-  findOne: (req, res) => {
-    Article.findOne({_id: req.params.id}).populate('user').then((rowArticle) => {
+  findById: (req, res) => {
+    Article.find({user: req.params.userid}).then((rowArticle) => {
       // console.log("HAIIIIIIIIIIIIIIIIIII", req.params.id);
       // console.log("-------------------->", rowArticle);
-      if (rowArticle) {
+      if (rowArticle.length != 0) {
         res.status(200).json({
-          message: "Tampil Satu Data Product",
+          message: "Tampil Data Article",
           data: rowArticle
         })
       } else {
@@ -39,8 +39,8 @@ module.exports = {
 
   insert: (req, res) => {
     // console.log("HHHHHHHHHHHHAAAAAAAAAAAAAAAAAAA", req.body);
-    // Article.create(helper.dataArticle(req.body)).then((result) => {
-    Article.create(req.body).then((result) => {
+    Article.create(helper.dataArticle(req.body)).then((result) => {
+    // Article.create(req.body).then((result) => {
       // console.log("------------------------------ID ", result);
       res.status(200).json({
         message: "Berhasil Menambah Article",
