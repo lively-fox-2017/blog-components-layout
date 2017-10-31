@@ -4,7 +4,7 @@ import MainComponent from '@/components/MainComponent'
 import HomeComponent from '@/components/HomeComponent'
 import BlogComponent from '@/components/BlogComponent'
 import ArticleSummary from '@/components/ArticleSummary'
-// import ArticleDetail from '@/components/ArticleDetail'
+import ArticleDetail from '@/components/ArticleDetail'
 
 Vue.use(Router)
 
@@ -23,6 +23,11 @@ export default new Router({
         path: '',
         name: 'blog',
         component: ArticleSummary
+      }, {
+        path: '/:slug',
+        name: 'detail',
+        props: true,
+        component: ArticleDetail
       }]
     }]
   }]

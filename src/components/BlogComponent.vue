@@ -1,5 +1,5 @@
 <template lang="html">
-  <sui-container>
+  <sui-container textAlign="justified">
     <sui-grid :stackable="true">
       <sui-grid-row>
         <sui-grid-column :width="4">
@@ -10,7 +10,7 @@
           </sui-segment>
         </sui-grid-column>
         <sui-grid-column :width="12">
-          <router-view></router-view>
+          <router-view :articles="articles"></router-view>
         </sui-grid-column>
       </sui-grid-row>
     </sui-grid>
@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     getArticles () {
-      this.$http.get('/api/articles/get_articles')
+      this.$http.get('/api/article/get_article')
         .then(({data}) => {
           this.articles = data
         })
