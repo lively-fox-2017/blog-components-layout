@@ -3,9 +3,7 @@ var router = express.Router();
 const controller = require('../controller/userController')
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.get('/', controller.findAll);
 
 router.post('/register', controller.register)
 

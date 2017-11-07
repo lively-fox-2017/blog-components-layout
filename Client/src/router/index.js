@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import articles from '@/components/articles'
-import showArticle from '@/components/show-article'
+import Articles from '@/components/Articles'
+import ShowArticle from '@/components/ShowArticle'
 
 Vue.use(Router)
 
@@ -15,11 +15,11 @@ export default new Router({
     },
     {
       path: '/articles',
-      component: articles,
+      component: Articles,
       children: [
         {
           path: ':id',
-          component: showArticle,
+          component: ShowArticle,
           props: true
         }
       ]

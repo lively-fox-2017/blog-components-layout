@@ -2,6 +2,19 @@ const helper = require('../helpers/helper')
 const User = require('../models/user')
 
 module.exports = {
+  findAll: (req, res) => {
+    User.find().then((result) => {
+      res.status(200).json({
+        message: "Berhasil Tampil",
+        data: result
+      })
+    }).catch((reason) => {
+      res.status(404).json({
+        message: reason
+      })
+    })
+  },
+
   register: (req, res) => {
     let secret = helper.secretKeyGen()
     let password = helper.secretHash(secret, req.body.password)

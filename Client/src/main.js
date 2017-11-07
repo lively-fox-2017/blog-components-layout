@@ -6,6 +6,7 @@ import router from './router'
 import axios from 'axios'
 import swal from 'vue-sweetalert2'
 import VueJWT from 'vuejs-jwt'
+import store from './vuex/store'
 
 Vue.prototype.$axios = axios.create({
   baseURL: 'http://localhost:3000'
@@ -23,6 +24,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })

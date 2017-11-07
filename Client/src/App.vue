@@ -18,7 +18,7 @@
             <li><router-link to="/articles">Articles</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li v-if="isLogin == false" class="dropdown">
+            <li v-if="getUser.isLogin == false" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login</a>
               <ul class="dropdown-menu" role="menu">
                 <li>
@@ -32,14 +32,14 @@
               </ul>
             </li>
             <li v-else>
-              <a v-on:click="logout()">Logout</a>
+              <a href="#" v-on:click="logout()">Logout</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <router-view :isLogin="isLogin"/>
+    <router-view />
   </div>
 </template>
 
@@ -52,18 +52,17 @@ export default {
         username: '',
         password: ''
       },
-      errorMessage: '',
-      isLogin: false
+      errorMessage: ''
+    }
+  },
+  computed: {
+    getUser () {
+      return this.$store.state.user
     }
   },
   methods: {
     login () {
-      let credentials = {
-        username: this.credentials.username,
-        password: this.credentials.password
-      }
-
-      this.$axios.post('/users/login', credentials)
+      this.$axios.post('/users/login', this.credentials)
       .then((loginResponse) => {
         // console.log(loginResponse)
         this.$swal(
@@ -73,7 +72,13 @@ export default {
         )
 
         localStorage.setItem('token', loginResponse.data.token)
-        this.isLogin = true
+
+        let decodedToken = this.$jwt.decode()
+        // console.log(userId)
+        this.$store.commit('setLogin', {
+          isLogin: true,
+          userId: decodedToken._id
+        })
       }).catch((reason) => {
         this.errorMessage = 'Invalid Username and Password'
       })
@@ -100,7 +105,20 @@ export default {
         })
 
         localStorage.removeItem('token')
-        this.isLogin = false
+        this.$store.commit('setLogin', {
+          isLogin: false,
+          userId: ''
+        })
+      })
+    }
+  },
+  created () {
+    if (localStorage.getItem('token')) {
+      let decodedToken = this.$jwt.decode()
+
+      this.$store.commit('setLogin', {
+        isLogin: true,
+        userId: decodedToken._id
       })
     }
   }
