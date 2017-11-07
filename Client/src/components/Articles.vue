@@ -1,6 +1,6 @@
 <template>
   <div>
-    <recentArticle :userStatus="userStatus"></recentArticle>
+    <RecentArticle :userStatus="userStatus"></RecentArticle>
     <router-view></router-view>
     <!-- <showArticle></showArticle> -->
   </div>

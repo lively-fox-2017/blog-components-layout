@@ -67,6 +67,7 @@ module.exports = {
         Article.update({_id: req.params.id}, {
           $set: {
             judul: req.body.judul,
+	    imgUrl: req.body.imgUrl,
             deskripsi: req.body.deskripsi,
             updatedAt: new Date()
           }

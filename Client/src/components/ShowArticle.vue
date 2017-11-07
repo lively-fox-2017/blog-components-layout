@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="showArticle col-sm-12 col-md-7 col-md-offset-2">
+    <div class="showArticle col-sm-12 col-md-8 col-md-offset-2">
       <!-- <h4>{{ formatDate }}</h4> -->
       <h2>{{ article.judul }}</h2>
       <img v-bind:src="article.imgUrl" width='90%' v-bind:alt="article.imgName">

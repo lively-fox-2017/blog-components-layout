@@ -109,6 +109,8 @@ export default {
           isLogin: false,
           userId: ''
         })
+
+        this.$router.go('/')
       })
     }
   },
