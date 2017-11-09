@@ -13,7 +13,12 @@ export default {
   name: 'ArticleDetail',
   data () {
     return {
-      article: ''
+      article: {
+        title: '',
+        content: '',
+        author: {},
+        coverImage: ''
+      }
     }
   },
   props: ['slug'],
