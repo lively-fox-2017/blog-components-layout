@@ -27,12 +27,15 @@ import jwtdecode from 'jwt-decode'
 export default {
   name: 'CreateArticleComponent',
 
+  props: ['slug'],
+
   data: () => ({
     title: '',
     content: '',
     imageName: '',
     image: '',
-    resultUpload: null
+    resultUpload: null,
+    oldfile: ''
   }),
 
   methods: {
@@ -46,7 +49,6 @@ export default {
       var reader = new FileReader()
 
       reader.onload = (e) => {
-        console.log('sini', e.target.result)
         this.image = e.target.result
       }
       reader.readAsDataURL(this.resultUpload)
@@ -59,14 +61,31 @@ export default {
       data.append('content', this.content)
       data.append('image', this.resultUpload)
       data.append('author', user._id)
-      this.$http.post('/api/article/post_article', data)
+      data.append('oldfile', this.oldfile)
+      this.$http.put(`/api/article/update_article/${this.slug}`, data)
         .then(function (res) {
           location.reload()
         })
         .catch(function (err) {
           console.log(err)
         })
+    },
+    getDetailArticle () {
+      this.$http.get('/api/article/get_article/' + this.slug)
+        .then(({data}) => {
+          this.title = data[0].title
+          this.content = data[0].content
+          this.image = data[0].coverImage
+          this.oldfile = data[0].coverImage
+        })
+        .catch((err) => {
+          console.error(err)
+        })
     }
+  },
+
+  created () {
+    this.getDetailArticle()
   }
 }
 </script>

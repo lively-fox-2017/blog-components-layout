@@ -8,6 +8,7 @@ import ArticleDetail from '@/components/ArticleDetail'
 import DashboardComponent from '@/components/DashboardComponent'
 import UserArticleComponent from '@/components/UserArticleComponent'
 import CreateArticleComponent from '@/components/CreateArticleComponent'
+import UpdateArticleComponent from '@/components/UpdateArticleComponent'
 
 Vue.use(Router)
 
@@ -31,6 +32,11 @@ export default new Router({
         path: '/new_post',
         component: CreateArticleComponent,
         name: 'add'
+      }, {
+        path: '/update_post/:slug',
+        props: true,
+        component: UpdateArticleComponent,
+        name: 'edit'
       }]
     }, {
       path: 'blog',

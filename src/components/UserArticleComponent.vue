@@ -21,12 +21,16 @@
               <sui-card-description>{{formatSummary(article.content)}}</sui-card-description>
             </sui-card-content>
             <sui-card-content extra>
-              <router-link :to="{ name: 'detail', params: {slug: article.slug} }">
+              <router-link :to="{ name: 'edit', params: {slug: article.slug} }">
                 <sui-button basic>
                   <sui-icon name="angle right" />
                   Edit
                 </sui-button>
               </router-link>
+              <sui-button @click.native.prevent="deleteArticle(article._id)" negative>
+                <sui-icon name="remove circle outline" />
+                Delete
+              </sui-button>
             </sui-card-content>
           </sui-card>
         </sui-card-group>
@@ -58,6 +62,15 @@ export default {
       if (value) {
         return moment(value).format('d MMM YYYY')
       }
+    },
+    deleteArticle (articleId) {
+      this.$http.delete(`/api/article/delete_article/${articleId}`)
+        .then(function (res) {
+          location.reload()
+        })
+        .catch(function (err) {
+          console.log(err)
+        })
     }
   }
 }
