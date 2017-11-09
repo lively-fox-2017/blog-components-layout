@@ -6,9 +6,11 @@ import router from './router'
 
 import axios from 'axios'
 import SuiVue from 'semantic-ui-vue'
+import FBSignInButton from 'vue-facebook-signin-button'
 import 'semantic-ui-css/semantic.min.css'
 
-Vue.use(SuiVue);
+Vue.use(SuiVue)
+Vue.use(FBSignInButton)
 Vue.prototype.$http = axios.create({
   baseURL: 'http://localhost:3000'
 })
